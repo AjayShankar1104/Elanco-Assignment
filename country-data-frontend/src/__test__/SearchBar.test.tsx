@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import { SetStateAction } from 'react';
 
 describe('SearchBar Component', () => {
-  it('renders the search input correctly', () => {
+  it('should render the search input correctly', () => {
     render(<SearchBar searchTerm={''} setSearchTerm={function (value: SetStateAction<string>): void {
         throw new Error('Function not implemented.');
     } } />);
@@ -13,7 +13,7 @@ describe('SearchBar Component', () => {
     expect(inputElement).toBeInTheDocument();
   });
 
-  it('allows users to type in the search input', () => {
+  it('should allows users to type in the search input', () => {
     render(<SearchBar searchTerm={''} setSearchTerm={function (value: SetStateAction<string>): void {
         throw new Error('Function not implemented.');
     } } />);

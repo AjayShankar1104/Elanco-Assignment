@@ -10,8 +10,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedRegion, setSelectedRegion] = useState<string>('');
   const [regions, setRegions] = useState<string[]>([]);
-  const [selectedRegion, setSelectedRegion] = useState('');
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -22,7 +22,6 @@ export default function Home() {
           ...new Set(response.data.map((country: Country) => country.region)),
         ];
         setRegions(uniqueRegions as string[]);
-
         setLoading(false);
       } catch (err) {
         setError('Failed to load countries');
@@ -31,6 +30,10 @@ export default function Home() {
     };
     fetchCountries();
   }, []);
+
+  const handleRegionChange = (countries: Country[]) => {
+    setCountries(countries);  
+  };
 
   if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
   if (error) return <p className="text-red-500">{error}</p>;
@@ -42,9 +45,7 @@ export default function Home() {
   });
 
 
-  const handleRegionChange = (region: string) => {
-    setSelectedRegion(region);
-  };
+  
   return (
     <div className="p-6">
       {/* Search Input */}
@@ -53,11 +54,8 @@ export default function Home() {
       </div>
 
       <div className="mb-4">
-      <Filter
-        regions={regions}
-        selectedRegion={selectedRegion}
-        onRegionChange={handleRegionChange}
-      />
+      <Filter regions={regions} onRegionChange={handleRegionChange}/>
+
       </div>
 
       {/* Display filtered countries */}

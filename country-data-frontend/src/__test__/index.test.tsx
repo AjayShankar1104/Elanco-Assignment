@@ -10,18 +10,18 @@ describe('Home Component', () => {
     vi.clearAllMocks();
   });
 
-  it('shows loading message when fetching data', () => {
+  it('should show loading message when fetching data', () => {
     render(<Home />);
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  it('shows error message if fetching data fails', async () => {
+  it('should show error message if fetching data fails', async () => {
     (axios.get as jest.Mock).mockRejectedValueOnce(new Error('Failed to load countries'));
     render(<Home />);
     await waitFor(() => expect(screen.getByText('Failed to load countries')).toBeInTheDocument());
   });
 
-  it('renders country cards once data is fetched', async () => {
+  it('should render country cards once data is fetched', async () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({
       data: [
         { name: 'India', region: 'Asia', flag: 'https://flagcdn.com/in.svg', alpha3Code: 'IND' },
@@ -34,7 +34,7 @@ describe('Home Component', () => {
     await waitFor(() => expect(screen.getByText('USA')).toBeInTheDocument());
   });
 
-  it('filters countries based on the search term', async () => {
+  it('should filters countries based on the search term', async () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({
       data: [
         { name: 'India', region: 'Asia', flag: 'https://flagcdn.com/in.svg', alpha3Code: 'IND' },

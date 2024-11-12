@@ -10,7 +10,7 @@ const mockCountry = {
 };
 
 describe('CountryCard Component', () => {
-  it('renders country information correctly', () => {
+  it('should render country information correctly', () => {
     render(<CountryCard country={mockCountry} />);
 
    
@@ -20,7 +20,7 @@ describe('CountryCard Component', () => {
     expect(imgElement.src).toBe(mockCountry.flag);
   });
 
-  it('renders a message when flag is missing', () => {
+  it('should render a message when flag is missing', () => {
     const countryWithoutFlag = { ...mockCountry, flag: '' };
     render(<CountryCard country={countryWithoutFlag} />);
 

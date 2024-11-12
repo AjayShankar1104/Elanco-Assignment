@@ -1,5 +1,6 @@
+import { Country } from "./country";
+
 export interface FilterProps {
-    regions: string[];
-    selectedRegion: string;
-    onRegionChange: (region: string) => void;
+    onRegionChange: (countries: Country[]) => void;
+    regions: string[]
   }
